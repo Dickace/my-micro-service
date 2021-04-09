@@ -1,6 +1,7 @@
 package transport
 
 import (
+	"fmt"
 	"github.com/gorilla/mux"
 	"io/ioutil"
 	"log"
@@ -26,6 +27,7 @@ func Arithmetic(w http.ResponseWriter, r *http.Request)  {
 	if err != nil{
 		log.Fatal(err)
 	}
+
 	str:= string(requS)
 	s:= strings.Fields(str)
 	sum, err:= strconv.ParseInt(s[0],10,64)
@@ -45,4 +47,5 @@ func Arithmetic(w http.ResponseWriter, r *http.Request)  {
 			sum-= v
 		}
 	}
+	fmt.Fprintf(w, string(sum))
 }

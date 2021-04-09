@@ -7,11 +7,10 @@ import (
 )
 
 func main() {
-	os.Setenv("PORT", "4444")
 	port:= os.Getenv("PORT")
 
 	http.HandleFunc("/start", func(w http.ResponseWriter, _ *http.Request) {
-		fmt.Fprint(w, "Start")
+		fmt.Fprintf(w, "Start")
 	} )
 
 	http.ListenAndServe(":"+port, nil)

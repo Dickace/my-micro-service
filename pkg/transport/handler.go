@@ -15,6 +15,8 @@ func Router() *mux.Router {
 	s:= r.PathPrefix("/api/v1").Subrouter()
 	s.HandleFunc("/health", ServerOK).Methods(http.MethodHead)
 	s.HandleFunc("/arithmetic", func(writer http.ResponseWriter, request *http.Request) {
+		requestS, _:= ioutil.ReadAll(request.Body)
+		log.Print(requestS)
 		fmt.Fprintf(writer,"4")
 	}).Methods(http.MethodPost)
 	return r
@@ -26,6 +28,7 @@ func ServerOK(w http.ResponseWriter, _ *http.Request){
 
 func Arithmetic(w http.ResponseWriter, r *http.Request)  {
 	requS, err:= ioutil.ReadAll(r.Body)
+	log.Print(requS)
 	if err != nil{
 		log.Fatal(err)
 	}

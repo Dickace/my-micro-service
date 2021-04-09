@@ -11,7 +11,7 @@ import (
 
 func Router() *mux.Router {
 	r:= mux.NewRouter()
-	s:= r.PathPrefix("/api/v1/").Subrouter()
+	s:= r.PathPrefix("/api/v1").Subrouter()
 	s.HandleFunc("/health", ServerOK).Methods(http.MethodHead)
 	s.HandleFunc("/api/v1/arithmetic", Arithmetic).Methods(http.MethodPost)
 	return r

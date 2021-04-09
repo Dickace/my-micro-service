@@ -17,6 +17,8 @@ func Router() *mux.Router {
 	s.HandleFunc("/arithmetic", func(writer http.ResponseWriter, request *http.Request) {
 		requestS, _:= ioutil.ReadAll(request.Body)
 		log.Print(requestS)
+		str:= string(requestS)
+		log.Print(str)
 		fmt.Fprintf(writer,"4")
 	}).Methods(http.MethodPost)
 	return r

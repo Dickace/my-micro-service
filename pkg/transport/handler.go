@@ -27,7 +27,7 @@ func Arithmetic(w http.ResponseWriter, r *http.Request)  {
 	if err != nil{
 		log.Fatal(err)
 	}
-
+	fmt.Fprintf(w, string(4))
 	str:= string(requS)
 	s:= strings.Fields(str)
 	sum, err:= strconv.ParseInt(s[0],10,64)

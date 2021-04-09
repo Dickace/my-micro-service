@@ -3,7 +3,7 @@ package transport
 import (
 	"fmt"
 	"github.com/gorilla/mux"
-	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"strconv"
@@ -23,13 +23,13 @@ func ServerOK(w http.ResponseWriter, _ *http.Request){
 }
 
 func Arithmetic(w http.ResponseWriter, r *http.Request)  {
-	requS, err:= io.ReadAll(r.Body)
+	requS, err:= ioutil.ReadAll(r.Body)
 	if err != nil{
 		log.Fatal(err)
 	}
 	str:= string(requS)
 	s:= strings.Fields(str)
-	sum, _ := strconv.ParseInt(s[0],10,64)
+	sum, err:= strconv.ParseInt(s[0],10,64)
 	for i:= 1; i < len(s)+1;i+=2{
 		switch s[i] {
 		case "+":

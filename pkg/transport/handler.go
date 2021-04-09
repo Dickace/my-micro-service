@@ -47,5 +47,5 @@ func Arithmetic(w http.ResponseWriter, r *http.Request)  {
 			sum-= v
 		}
 	}
-	fmt.Fprintf(w, string(sum))
+	fmt.Fprintf(w, strconv.FormatInt(sum, 10))
 }

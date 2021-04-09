@@ -15,7 +15,7 @@ func Router() *mux.Router {
 	s:= r.PathPrefix("/api/v1").Subrouter()
 	s.HandleFunc("/health", ServerOK).Methods(http.MethodHead)
 	s.HandleFunc("/arithmetic", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, string(4))
+		fmt.Fprintf(w, strconv.Itoa(4))
 	}).Methods(http.MethodPost)
 	return r
 }
